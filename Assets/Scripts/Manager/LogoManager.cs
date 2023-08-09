@@ -35,6 +35,6 @@ public class LogoManager : MonoBehaviour
 
     public void ToMenuScene()
     {
-        Core.I.LoadScene("MenuScene");
+        Core.I.LoadScene(Define.SCENE_MENU_STR);
     }
 }

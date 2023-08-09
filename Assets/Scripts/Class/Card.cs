@@ -33,7 +33,7 @@ public class Card : MonoBehaviour
         {
             GameManager.I.secondCard = gameObject;
             GameManager.I.secondCardpos = gameObject.transform.position;
-            GameManager.I.isMatched();
+            GameManager.I.IsMatched();
         }
     }
     public void destroyCard()

@@ -6,22 +6,34 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI timeTxt;
+
     public GameObject image;
     public GameObject endTxt;
     public GameObject card;
     public bool isGamePlaying = true;
-    [SerializeField] TextMeshProUGUI timeTxt;
     public int cardPlayed = 0;
     public float time;
-    public static GameManager I;
     public GameObject firstCard;
     public GameObject secondCard;
     public Vector3 firstCardpos;
     public Vector3 secondCardpos;
     List<GameObject> listcard = new List<GameObject>();
+
+    int correct = 0;
+
+    public static GameManager I;
+
     void Awake()
     {
-        I = this;
+        if(I == null)
+        {
+            I = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -38,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) == true)
+        if (isGamePlaying == true && Input.GetKeyDown(KeyCode.Mouse0) == true)
         {
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -56,12 +68,14 @@ public class GameManager : MonoBehaviour
 
     public void StageInit(int _stageIndex)
     {
+        correct = 0;
+        SoundManager.I.PlayBGM(Define.BGM_GAME);
+        GameUIManager.I.SetStageName(_stageIndex);
+
         int[] ks = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
         ks = ks.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
 
         char[] cardType = new char[3] { 'h', 'k', 'm' };
-
-        Debug.Log(cardType[_stageIndex]);
 
         for (int i = 0; i < 16; i++)
         {
@@ -85,22 +99,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void isMatched()
+    public void IsMatched()
     {
-        string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+        string firstCardImage  = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+
         if (firstCardImage == secondCardImage && firstCardpos != secondCardpos)
         {
-            listcard.RemoveRange(0, 2);
-            if (listcard.Count == 0)
+            SoundManager.I.PlaySFX(Define.GAME_CARD_MATCHED);
+            GameUIManager.I.ShowOXDisplay(true);
+            GameUIManager.I.ShowMatchText(firstCardImage);
+
+            for(int i = 0; i < listcard.Count; i++)
             {
-                SceneManager.LoadScene("ResultScene_Additive", LoadSceneMode.Additive);
+                if(listcard[i] == null)
+                {
+                    continue;
+                }
+
+                string tempName = listcard[i].transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+
+                if (tempName == firstCardImage)
+                {
+                    listcard[i] = null;
+                }
             }
+
             firstCard.GetComponent<Card>().destroyCard();
             secondCard.GetComponent<Card>().destroyCard();
+            correct++;
+
+            if (correct == listcard.Count / 2)
+            {
+                isGamePlaying = false;
+                GameUIManager.I.ToggleGameOverUI();
+
+                Invoke("FadeInDelay", 1.0f);
+                Invoke("ToResultScene", 2.0f);
+            }
+
         }
         else
         {
+            SoundManager.I.PlaySFX(Define.GAME_CARD_FAILED);
+            GameUIManager.I.ShowOXDisplay(false);
             firstCard.GetComponent<Card>().closeCard();
             secondCard.GetComponent<Card>().closeCard();
         }
@@ -111,6 +153,31 @@ public class GameManager : MonoBehaviour
         secondCardpos = Vector3.zero;
 
     }
+    
+    void FadeInDelay()
+    {
+        GameUIManager.I.FadeIn();
+    }
 
-    //123
+    void ToResultScene()
+    {
+        Core.I.LoadScene(Define.SCENE_RESULT_STR, LoadSceneMode.Additive);
+    }
+
+    public void Release()
+    {
+        for(int i = 0; i < listcard.Count; i++)
+        {
+            if(listcard[i] != null)
+            {
+                Destroy(listcard[i]);
+            }
+        }
+
+        listcard.Clear();
+
+        time = 0.0f;
+        cardPlayed = 0;
+        correct = 0;
+    }
 }

@@ -8,6 +8,7 @@ public class Core : MonoBehaviour
     [SerializeField] GameObject evSysObj;
 
     public int stageIndex { get; set; } = 0;
+    public bool[] stage = new bool[3]{ false, false, false }; 
 
     public static Core I = null;
 

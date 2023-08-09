@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class SoundManager : MonoBehaviour
     AudioSource bgm;
     List<AudioSource> sfxPool = new List<AudioSource>();
 
+    [SerializeField] AudioClip[] bgmClips = null;
     [SerializeField] AudioClip[] sfxClips = null;
+    [SerializeField] AudioMixer lowPass = null;
 
     #region Singleton
     private void Awake()
@@ -39,6 +42,7 @@ public class SoundManager : MonoBehaviour
         GameObject temp = Instantiate(new GameObject());
         temp.transform.parent = transform;
         temp.AddComponent<AudioSource>();
+        temp.name = "BGM";
 
         bgm = temp.GetComponent<AudioSource>();
         bgm.loop = true;
@@ -48,6 +52,7 @@ public class SoundManager : MonoBehaviour
             GameObject sfx = Instantiate(new GameObject());
             sfx.transform.parent = transform;
             sfx.AddComponent<AudioSource>();
+            sfx.name = "SFXSource_" + i;
 
             sfxPool.Add(sfx.GetComponent<AudioSource>());
         }
@@ -70,7 +75,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(int _index)
     {
-
+        bgm.clip = bgmClips[_index];
+        bgm.Play();
     }
 
     public void PlaySFX(int _index)
@@ -93,6 +99,18 @@ public class SoundManager : MonoBehaviour
     public void StopBGM()
     {
         bgm.Stop();
+    }
+
+    public void LowPassBGM()
+    {
+        if (bgm.outputAudioMixerGroup == null)
+        {
+            bgm.outputAudioMixerGroup = lowPass.FindMatchingGroups("Master")[0];
+        }
+        else
+        {
+            bgm.outputAudioMixerGroup = null;
+        }
     }
 
     #endregion

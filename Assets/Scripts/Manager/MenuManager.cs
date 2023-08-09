@@ -17,6 +17,9 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        Core.I.OnUIInput();
+
+        SoundManager.I.PlayBGM(Define.BGM_MENU);
         fadeInOutAnim.SetTrigger("FadeOut");
     }
 
@@ -72,7 +75,7 @@ public class MenuManager : MonoBehaviour
     {
         SoundManager.I.PlaySFX(Define.UI_BUTTON_CLICK_SFX);
 
-        if (_isLeft == false)
+        if (_isLeft == true)
         {
             stageIndex--;
 
@@ -91,14 +94,12 @@ public class MenuManager : MonoBehaviour
             }
         }
 
-        Debug.Log(stageIndex);
-
         selectImg.sprite = selectSprites[stageIndex];
     }
 
     void ToGameScene()
     {
-        Core.I.LoadScene("GameScene");
+        Core.I.LoadScene(Define.SCENE_GAME_STR);
     }
 
     void ToExit()
