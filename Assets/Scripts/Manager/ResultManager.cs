@@ -140,7 +140,8 @@ public class ResultManager : MonoBehaviour
 
     void ToCredit()
     {
-
+        Core.I.LoadScene(Define.SCENE_CREDIT_STR);
+        Core.I.UnloadLastAdditiveScene();
     }
 
     void ToMenu()
