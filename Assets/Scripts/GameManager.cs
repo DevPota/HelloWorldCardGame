@@ -13,15 +13,11 @@ public class GameManager : MonoBehaviour
     public static GameManager I;
     public GameObject firstCard;
     public GameObject secondCard;
-
    
     void Awake()
     {
         I = this;
     }
-
-    // Start is called before the first frame update
-
 
     void Start()
     {
@@ -40,18 +36,19 @@ public class GameManager : MonoBehaviour
 
             string name = "k_" + ks[i];
             newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/"+ name);
+
+            SpriteRenderer[] sr = newCard.GetComponentsInChildren<SpriteRenderer>();
+
+            foreach(SpriteRenderer element in sr)
+            {
+                element.sortingOrder = 2;
+            }
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
      public void isMatched()
-    {
-        string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+     {
+        string firstCardImage  = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
 
         if (firstCardImage == secondCardImage)
@@ -65,7 +62,7 @@ public class GameManager : MonoBehaviour
             secondCard.GetComponent<Card>().closeCard();
         }
 
-        firstCard = null;
+        firstCard  = null;
         secondCard = null;
     }
 }
