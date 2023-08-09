@@ -59,13 +59,13 @@ public class GameManager : MonoBehaviour
 
             string name = "" + cardType[_stageIndex] + '_' + ks[i];
             newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/" + name);
-
             SpriteRenderer[] sr = newCard.GetComponentsInChildren<SpriteRenderer>();
 
             foreach (SpriteRenderer element in sr)
             {
                 element.sortingOrder = 2;
             }
+            newCard.transform.Find("front").gameObject.SetActive(false);
         }
     }
 
