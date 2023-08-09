@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject secondCard;
     public Vector3 firstCardpos;
     public Vector3 secondCardpos;
+    List<GameObject> listcard = new List<GameObject>();
     void Awake()
     {
         I = this;
@@ -52,6 +55,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 16; i++)
         {
             GameObject newCard = Instantiate(card);
+            listcard.Add(newCard);
             newCard.transform.parent = GameObject.Find("Cards").transform;
 
             float x = (i / 4) * 1.4f - 2.1f;
@@ -76,6 +80,11 @@ public class GameManager : MonoBehaviour
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         if (firstCardImage == secondCardImage && firstCardpos != secondCardpos)
         {
+            listcard.RemoveRange(0,2);
+            if (listcard.Count == 0) 
+            {
+                SceneManager.LoadScene("ResultScene_Additive", LoadSceneMode.Additive);
+            }
             firstCard.GetComponent<Card>().destroyCard();
             secondCard.GetComponent<Card>().destroyCard();
         }
