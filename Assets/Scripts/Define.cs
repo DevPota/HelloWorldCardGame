@@ -1,5 +1,12 @@
 public static class Define
 {
+    public const string CARD_INIT_ANIM_SPIN = "Spin";
+    public const string CARD_INIT_ANIM_WAVE = "Wave";
+    public const string CARD_ANIM_FLIP_0    = "CardFlip_0";
+    public const string CARD_ANIM_FLIP_1    = "CardFlip_1";
+    public const string CARD_ANIM_MATCHED   = "Matched";
+    public const string CARD_ANIM_RESET     = "Reset";
+
     public const int BGM_MENU = 0;
     public const int BGM_GAME = 1;
     public const int BGM_RESULT = 2;
@@ -10,8 +17,8 @@ public static class Define
     public const int UI_BUTTON_SELECT_SECOND_SFX = 2;
     public const int UI_BUTTON_GAME_MENU_SFX = 3;
 
-    public const int GAME_CARD_MATCHED = 4;
-    public const int GAME_CARD_FAILED  = 5;
+    public const int GAME_CARD_MATCHED_SFX = 4;
+    public const int GAME_CARD_FAILED_SFX  = 5;
 
     public const string SCENE_LOGO_STR   = "LogoScene";
     public const string SCENE_MENU_STR   = "MenuScene";

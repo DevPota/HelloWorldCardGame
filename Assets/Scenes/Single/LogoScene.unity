@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 796485844}
   - component: {fileID: 796485845}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   evSysObj: {fileID: 1618154148}
+  stage: 000000
 --- !u!1 &1465776111
 GameObject:
   m_ObjectHideFlags: 0

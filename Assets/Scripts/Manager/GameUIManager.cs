@@ -59,7 +59,16 @@ public class GameUIManager : MonoBehaviour
     public void ShowMatchText(string _name)
     {
         cardMatch.gameObject.SetActive(true);
-        cardMatch.ShowDisplay(GetMatchText(_name));
+        string name = GetMatchText(_name);
+
+        if (name == "" || name == null)
+        {
+            cardMatch.ShowDisplay(_name);
+        }
+        else
+        {
+            cardMatch.ShowDisplay(name);
+        }
     }
 
     public void ShowOXDisplay(bool _isCorrect)
@@ -130,7 +139,6 @@ public class GameUIManager : MonoBehaviour
 
     public void OnClickMenuButton()
     {
-        GameManager.I.isGamePlaying = false;
         SoundManager.I.PlaySFX(Define.UI_BUTTON_GAME_MENU_SFX);
         ToggleMenuUI();
     }
@@ -138,7 +146,6 @@ public class GameUIManager : MonoBehaviour
     public void OnClickResumeButton()
     {
         SoundManager.I.PlaySFX(Define.UI_BUTTON_CLICK_SFX);
-        GameManager.I.isGamePlaying = true;
         ToggleMenuUI();
     }
 
@@ -147,11 +154,9 @@ public class GameUIManager : MonoBehaviour
         Core.I.OffUIInput();
         SoundManager.I.PlaySFX(Define.UI_BUTTON_CLICK_SFX);
         fadeInOut.SetTrigger("FadeIn");
-        GameManager.I.Release();
+        Invoke("ToggleMenuUI", 1.5f);
+        Invoke("FadeOut", 2.0f);
         GameManager.I.StageInit(Core.I.stageIndex);
-        Invoke("FadeOut", 1.0f);
-        Invoke("ToggleMenuUI", 1.0f);
-        GameManager.I.isGamePlaying = true;
         Core.I.OnUIInput();
     }
 
@@ -160,6 +165,6 @@ public class GameUIManager : MonoBehaviour
         Core.I.OffUIInput();
         SoundManager.I.PlaySFX(Define.UI_BUTTON_CLICK_SFX);
         fadeInOut.SetTrigger("FadeIn");
-        Invoke("ToMainMenu", 1.0f);
+        Invoke("ToMainMenu", 1.5f);
     }
 }

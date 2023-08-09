@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,16 +12,17 @@ public class GameManager : MonoBehaviour
     public GameObject image;
     public GameObject endTxt;
     public GameObject card;
-    public bool isGamePlaying = true;
+    public bool isGamePlaying = false;
     public int cardPlayed = 0;
     public float time;
-    public GameObject firstCard;
-    public GameObject secondCard;
+    public GameObject firstCard = null;
+    public GameObject secondCard = null;
     public Vector3 firstCardpos;
     public Vector3 secondCardpos;
     List<GameObject> listcard = new List<GameObject>();
 
     int correct = 0;
+    Coroutine initialCardAnimCorotuine = null;
 
     public static GameManager I;
 
@@ -47,30 +49,38 @@ public class GameManager : MonoBehaviour
         {
             time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
-
         }
 
         if (isGamePlaying == true && Input.GetKeyDown(KeyCode.Mouse0) == true)
         {
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Physics.Raycast(ray, out hit);
 
             if (hit.collider != null && hit.collider.gameObject.tag == "Card")
             {
-                cardPlayed++;
-                hit.collider.gameObject.GetComponent<Card>().openCard();
-
+                if(firstCard != null && 
+                   firstCard.name ==
+                   hit.collider.gameObject.name)
+                {
+                    return;
+                }
+                else
+                {
+                    cardPlayed++;
+                    hit.collider.gameObject.GetComponent<Card>().OpenCard();
+                }
             }
         }
     }
 
     public void StageInit(int _stageIndex)
     {
-        correct = 0;
+        Release();
+
         SoundManager.I.PlayBGM(Define.BGM_GAME);
         GameUIManager.I.SetStageName(_stageIndex);
+        timeTxt.text = "0:00";
 
         int[] ks = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
         ks = ks.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
@@ -80,6 +90,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 16; i++)
         {
             GameObject newCard = Instantiate(card);
+            newCard.gameObject.name = newCard.gameObject.name + "_" + i;
+            newCard.SetActive(false);
             listcard.Add(newCard);
             newCard.transform.parent = GameObject.Find("Cards").transform;
 
@@ -95,8 +107,48 @@ public class GameManager : MonoBehaviour
             {
                 element.sortingOrder = 2;
             }
+
             newCard.transform.Find("front").gameObject.SetActive(false);
         }
+
+        initialCardAnimCorotuine = StartCoroutine(InitialCardAnim());
+    }
+
+    IEnumerator InitialCardAnim()
+    {
+        int cardInitialAnimNum = Random.Range(0, 2);
+
+        foreach (GameObject cardObj in listcard)
+        {
+            cardObj.SetActive(true);
+            Card card = cardObj.GetComponent<Card>();
+
+            if (cardInitialAnimNum == 0)
+            {
+                card.PlayAnim(Define.CARD_INIT_ANIM_SPIN);
+            }
+            else
+            {
+                card.PlayAnim(Define.CARD_INIT_ANIM_WAVE);
+            }
+
+            yield return new WaitForSecondsRealtime(0.05f);
+        }
+
+        yield return null;
+        yield return new WaitForSecondsRealtime(1.0f);
+
+        foreach (GameObject cardObj in listcard)
+        {
+            Card card = cardObj.GetComponent<Card>();
+            card.PlayAnim(Define.CARD_ANIM_RESET);
+        }
+
+        isGamePlaying = true;
+        GameUIManager.I.ShowMatchText("게임 시작!");
+        initialCardAnimCorotuine = null;
+
+        yield break;
     }
 
     public void IsMatched()
@@ -106,7 +158,7 @@ public class GameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage && firstCardpos != secondCardpos)
         {
-            SoundManager.I.PlaySFX(Define.GAME_CARD_MATCHED);
+            SoundManager.I.PlaySFX(Define.GAME_CARD_MATCHED_SFX);
             GameUIManager.I.ShowOXDisplay(true);
             GameUIManager.I.ShowMatchText(firstCardImage);
 
@@ -125,8 +177,9 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            firstCard.GetComponent<Card>().destroyCard();
-            secondCard.GetComponent<Card>().destroyCard();
+            firstCard.GetComponent<Card>().DestroyCard();
+            secondCard.GetComponent<Card>().DestroyCard();
+
             correct++;
 
             if (correct == listcard.Count / 2)
@@ -141,17 +194,16 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SoundManager.I.PlaySFX(Define.GAME_CARD_FAILED);
+            SoundManager.I.PlaySFX(Define.GAME_CARD_FAILED_SFX);
             GameUIManager.I.ShowOXDisplay(false);
-            firstCard.GetComponent<Card>().closeCard();
-            secondCard.GetComponent<Card>().closeCard();
+            firstCard.GetComponent<Card>().CloseCard();
+            secondCard.GetComponent<Card>().CloseCard();
         }
 
         firstCard = null;
         secondCard = null;
         firstCardpos = Vector3.zero;
         secondCardpos = Vector3.zero;
-
     }
     
     void FadeInDelay()
@@ -166,6 +218,12 @@ public class GameManager : MonoBehaviour
 
     public void Release()
     {
+        if(initialCardAnimCorotuine != null)
+        {
+            StopCoroutine(initialCardAnimCorotuine);
+            initialCardAnimCorotuine = null;
+        }
+
         for(int i = 0; i < listcard.Count; i++)
         {
             if(listcard[i] != null)
@@ -176,6 +234,7 @@ public class GameManager : MonoBehaviour
 
         listcard.Clear();
 
+        isGamePlaying = false;
         time = 0.0f;
         cardPlayed = 0;
         correct = 0;

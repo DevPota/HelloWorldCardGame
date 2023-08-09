@@ -5,7 +5,7 @@ public class OXDisplay : MonoBehaviour
     [SerializeField] GameObject[] oxObjs;
 
     float duration = 0.0f;
-    float limit    = 0.5f;
+    float limit    = 1.0f;
 
     public void ShowDisplay(bool _isCorrect)
     {

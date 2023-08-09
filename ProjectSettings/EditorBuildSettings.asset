@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Additive/ResultScene_Additive.unity
     guid: 07fe9be7b55d2b1488d1f7ffa36654f7
+  - enabled: 1
+    path: Assets/Scenes/Single/CreditScene.unity
+    guid: ffca618ee93f14b41b09bf6caad67725
   m_configObjects: {}

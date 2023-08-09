@@ -79,10 +79,7 @@ public class ResultManager : MonoBehaviour
 
     void Retry()
     {
-        GameManager.I.Release();
         GameManager.I.StageInit(Core.I.stageIndex);
-        GameManager.I.isGamePlaying = true;
-
         GameUIManager.I.ToggleGameOverUI();
         GameUIManager.I.FadeOut();
         Core.I.UnloadLastAdditiveScene();
@@ -99,7 +96,6 @@ public class ResultManager : MonoBehaviour
             Core.I.stageIndex++;
         }
 
-        GameManager.I.Release();
         GameManager.I.StageInit(Core.I.stageIndex);
         Core.I.UnloadLastAdditiveScene();
     }
