@@ -62,6 +62,7 @@ public class MenuManager : MonoBehaviour
             Core.I.OffUIInput();
             doubleAnim.SetTrigger("Second");
             fadeInOutAnim.SetTrigger("FadeIn");
+            Core.I.stageIndex = stageIndex;
 
             Invoke("ToGameScene", 1.0f);
         }
