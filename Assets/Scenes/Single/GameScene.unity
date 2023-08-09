@@ -526,7 +526,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
       propertyPath: m_text
-      value: 24:59
+      value: 00:00
       objectReference: {fileID: 0}
     - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
       propertyPath: m_fontSize
@@ -667,6 +667,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7363886542015834650, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
   m_PrefabInstance: {fileID: 1003477155}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1003477157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+  m_PrefabInstance: {fileID: 1003477155}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1056686176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,5 +1356,11 @@ MonoBehaviour:
   image: {fileID: 0}
   endTxt: {fileID: 0}
   card: {fileID: 7413385312377642710, guid: a0ffbab684d809f4fbaff68634370e3b, type: 3}
+  isGamePlaying: 1
+  timeTxt: {fileID: 1003477157}
+  cardPlayed: 0
+  time: 0
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
+  firstCardpos: {x: 0, y: 0, z: 0}
+  secondCardpos: {x: 0, y: 0, z: 0}
