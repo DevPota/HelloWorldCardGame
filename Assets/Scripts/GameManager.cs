@@ -21,6 +21,24 @@ public class GameManager : MonoBehaviour
         StageInit(Core.I.stageIndex);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) == true)
+        {
+            
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Physics.Raycast(ray, out hit);
+
+            if (hit.collider != null && hit.collider.gameObject.tag == "Card")
+            {
+                // dDo something
+                hit.collider.gameObject.GetComponent<Card>().openCard();
+
+            }
+        }
+    }
+
     public void StageInit(int _stageIndex)
     {
         int[] ks = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
@@ -58,17 +76,20 @@ public class GameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage)
         {
-            //firstCard.GetComponent<Card>().destroyCard();
-            //secondCard.GetComponent<Card>().destroyCard();
+            firstCard.GetComponent<Card>().destroyCard();
+            secondCard.GetComponent<Card>().destroyCard();
         }
         else
         {
-            //firstCard.GetComponent<Card>().closeCard();
-            //secondCard.GetComponent<Card>().closeCard();
+            firstCard.GetComponent<Card>().closeCard();
+            secondCard.GetComponent<Card>().closeCard();
         }
 
         firstCard  = null;
         secondCard = null;
+
+
+
     }
 
 
