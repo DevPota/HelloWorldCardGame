@@ -29,7 +29,7 @@ public class Card : MonoBehaviour
             GameManager.I.firstCard = gameObject;
             GameManager.I.firstCardpos = gameObject.transform.position;
         }
-        else if(GameManager.I.firstCard != null)
+        else if (GameManager.I.firstCard != null)
         {
             GameManager.I.secondCard = gameObject;
             GameManager.I.secondCardpos = gameObject.transform.position;
@@ -58,3 +58,4 @@ public class Card : MonoBehaviour
         transform.Find("front").gameObject.SetActive(false);
     }
 }
+

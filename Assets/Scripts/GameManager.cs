@@ -2,13 +2,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject image;
     public GameObject endTxt;
     public GameObject card;
-    float time;
+    public bool isGamePlaying = true;
+    [SerializeField] TextMeshProUGUI timeTxt;
+    public int cardPlayed = 0;
+    public float time;
     public static GameManager I;
     public GameObject firstCard;
     public GameObject secondCard;
@@ -27,16 +31,23 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (isGamePlaying == true)
+        {
+            time += Time.deltaTime;
+            timeTxt.text = time.ToString("N2");
+
+        }
+
         if (Input.GetKeyDown(KeyCode.Mouse0) == true)
         {
-            
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Physics.Raycast(ray, out hit);
 
             if (hit.collider != null && hit.collider.gameObject.tag == "Card")
             {
-                // dDo something
+                cardPlayed++;
                 hit.collider.gameObject.GetComponent<Card>().openCard();
 
             }
@@ -74,14 +85,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-     public void isMatched()
-     {
-        string firstCardImage  = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+    public void isMatched()
+    {
+        string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         if (firstCardImage == secondCardImage && firstCardpos != secondCardpos)
         {
-            listcard.RemoveRange(0,2);
-            if (listcard.Count == 0) 
+            listcard.RemoveRange(0, 2);
+            if (listcard.Count == 0)
             {
                 SceneManager.LoadScene("ResultScene_Additive", LoadSceneMode.Additive);
             }
@@ -94,11 +105,12 @@ public class GameManager : MonoBehaviour
             secondCard.GetComponent<Card>().closeCard();
         }
 
-        firstCard  = null;
+        firstCard = null;
         secondCard = null;
         firstCardpos = Vector3.zero;
         secondCardpos = Vector3.zero;
 
     }
 
+    //123
 }
