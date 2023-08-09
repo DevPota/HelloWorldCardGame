@@ -44,6 +44,15 @@ public class GameManager : MonoBehaviour
                 newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/" + name);
             }
 
+            string name = "k_" + ks[i];
+            newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/"+ name);
+
+            SpriteRenderer[] sr = newCard.GetComponentsInChildren<SpriteRenderer>();
+
+            foreach(SpriteRenderer element in sr)
+            {
+                element.sortingOrder = 2;
+            }
         }
 
         if (Stageindex == 1)
@@ -83,15 +92,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
      public void isMatched()
-    {
-        string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+     {
+        string firstCardImage  = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
 
         if (firstCardImage == secondCardImage)
@@ -105,7 +108,7 @@ public class GameManager : MonoBehaviour
             secondCard.GetComponent<Card>().closeCard();
         }
 
-        firstCard = null;
+        firstCard  = null;
         secondCard = null;
     }
 
