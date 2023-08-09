@@ -72,7 +72,7 @@ public class MenuManager : MonoBehaviour
     {
         SoundManager.I.PlaySFX(Define.UI_BUTTON_CLICK_SFX);
 
-        if (_isLeft == true)
+        if (_isLeft == false)
         {
             stageIndex--;
 
@@ -90,6 +90,8 @@ public class MenuManager : MonoBehaviour
                 stageIndex = 0;
             }
         }
+
+        Debug.Log(stageIndex);
 
         selectImg.sprite = selectSprites[stageIndex];
     }
