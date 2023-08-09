@@ -7,7 +7,7 @@ public class Core : MonoBehaviour
 {
     [SerializeField] GameObject evSysObj;
 
-    public int index { get; set; } = 0;
+    public int stageIndex { get; set; } = 0;
 
     public static Core I = null;
 
