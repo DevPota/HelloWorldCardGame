@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager I;
     public GameObject firstCard;
     public GameObject secondCard;
-
+    public Vector3 firstCardpos;
+    public Vector3 secondCardpos;
     void Awake()
     {
         I = this;
@@ -73,8 +74,7 @@ public class GameManager : MonoBehaviour
      {
         string firstCardImage  = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
-
-        if (firstCardImage == secondCardImage)
+        if (firstCardImage == secondCardImage && firstCardpos != secondCardpos)
         {
             firstCard.GetComponent<Card>().destroyCard();
             secondCard.GetComponent<Card>().destroyCard();
@@ -87,10 +87,9 @@ public class GameManager : MonoBehaviour
 
         firstCard  = null;
         secondCard = null;
-
-
+        firstCardpos = Vector3.zero;
+        secondCardpos = Vector3.zero;
 
     }
-
 
 }

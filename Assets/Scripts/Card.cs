@@ -27,10 +27,12 @@ public class Card : MonoBehaviour
         if (GameManager.I.firstCard == null)
         {
             GameManager.I.firstCard = gameObject;
+            GameManager.I.firstCardpos = gameObject.transform.position;
         }
         else if(GameManager.I.firstCard != null)
         {
             GameManager.I.secondCard = gameObject;
+            GameManager.I.secondCardpos = gameObject.transform.position;
             GameManager.I.isMatched();
         }
     }
