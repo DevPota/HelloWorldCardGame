@@ -28,7 +28,7 @@ public class Card : MonoBehaviour
         {
             GameManager.I.firstCard = gameObject;
         }
-        else
+        else if(GameManager.I.firstCard != null)
         {
             GameManager.I.secondCard = gameObject;
             GameManager.I.isMatched();
@@ -36,7 +36,7 @@ public class Card : MonoBehaviour
     }
     public void destroyCard()
     {
-        Invoke("destroyCardInvoke", 1.0f);
+        Invoke("destroyCardInvoke", 0.5f);
     }
 
     void destroyCardInvoke()
@@ -46,7 +46,7 @@ public class Card : MonoBehaviour
 
     public void closeCard()
     {
-        Invoke("closeCardInvoke", 1.0f);
+        Invoke("closeCardInvoke", 0.5f);
     }
 
     void closeCardInvoke()
