@@ -1,10 +1,5 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,18 +10,15 @@ public class GameManager : MonoBehaviour
     public static GameManager I;
     public GameObject firstCard;
     public GameObject secondCard;
+
     void Awake()
     {
         I = this;
     }
 
-    // Start is called before the first frame update
-
     void Start()
     {
-        int Stageindex;
-        Stageindex = Testlevel.I.index;
-        Debug.Log(Stageindex);
+        int Stageindex = Core.I.stageIndex;
         int[] ks = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
         ks = ks.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
         if (Stageindex == 0)
@@ -42,16 +34,13 @@ public class GameManager : MonoBehaviour
 
                 string name = "h_" + ks[i];
                 newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/" + name);
-            }
 
-            string name = "k_" + ks[i];
-            newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/"+ name);
+                SpriteRenderer[] sr = newCard.GetComponentsInChildren<SpriteRenderer>();
 
-            SpriteRenderer[] sr = newCard.GetComponentsInChildren<SpriteRenderer>();
-
-            foreach(SpriteRenderer element in sr)
-            {
-                element.sortingOrder = 2;
+                foreach (SpriteRenderer element in sr)
+                {
+                    element.sortingOrder = 2;
+                }
             }
         }
 
