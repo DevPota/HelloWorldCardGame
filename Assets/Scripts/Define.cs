@@ -20,6 +20,13 @@ public static class Define
     public const int GAME_CARD_MATCHED_SFX = 4;
     public const int GAME_CARD_FAILED_SFX  = 5;
 
+    public const int UI_RTAN_SUPIRISED_SFX_0 = 6;
+    public const int UI_RTAN_SUPIRISED_SFX_1 = 7;
+
+    public const int GAME_CARD_INITAL_SFX   = 8;
+    public const int GAME_CARD_PLAYED_SFX_0 = 9;
+    public const int GAME_CARD_PLAYED_SFX_1 = 10;
+
     public const string SCENE_LOGO_STR   = "LogoScene";
     public const string SCENE_MENU_STR   = "MenuScene";
     public const string SCENE_GAME_STR   = "GameScene";

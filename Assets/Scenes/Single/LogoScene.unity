@@ -512,6 +512,8 @@ MonoBehaviour:
   bgmClips:
   - {fileID: 8300000, guid: 8eda0b6f990764d4caf49a1a541a5d16, type: 3}
   - {fileID: 8300000, guid: 8a8de4cddb5d676488202e1b531d5af2, type: 3}
+  - {fileID: 8300000, guid: c4448ade789a27948bf2601260efcac1, type: 3}
+  - {fileID: 8300000, guid: 953d7c5f320c8274e93823fe4233a3d6, type: 3}
   sfxClips:
   - {fileID: 8300000, guid: bf108115444085c4a905fe0d18642785, type: 3}
   - {fileID: 8300000, guid: 39862795c11027346a3c388136b9951c, type: 3}
@@ -519,6 +521,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 08bbceff62eaf764ca3819c390b22656, type: 3}
   - {fileID: 8300000, guid: a2a3cebbecfe27a44bfd5e5ad6353bbd, type: 3}
   - {fileID: 8300000, guid: dc231d52c74fd9140a89cbe8ff19f4b5, type: 3}
+  - {fileID: 8300000, guid: cea57403e88d41d4dacf4ac09e845531, type: 3}
+  - {fileID: 8300000, guid: 7e21ac7ae0cd04343bd8d08cf6123cfc, type: 3}
+  - {fileID: 8300000, guid: b487533dcebc64a46be42fa72c952cd9, type: 3}
+  - {fileID: 8300000, guid: 1898d930351396944a0429d3e919d2fc, type: 3}
+  - {fileID: 8300000, guid: fb2435db865c60c43b8378d83a8db210, type: 3}
   lowPass: {fileID: 24100000, guid: 85fa29848d417de4493e18739b3421f6, type: 2}
 --- !u!1 &1618154148
 GameObject:

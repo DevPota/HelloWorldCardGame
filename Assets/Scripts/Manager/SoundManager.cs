@@ -14,6 +14,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip[] sfxClips = null;
     [SerializeField] AudioMixer lowPass = null;
 
+    Coroutine fadeInBGMcoroutine = null;
+    Coroutine fadeOutBGMcoroutine = null;
+
     #region Singleton
     private void Awake()
     {
@@ -75,6 +78,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(int _index)
     {
+        bgm.volume = 1.0f;
         bgm.clip = bgmClips[_index];
         bgm.Play();
     }
@@ -111,6 +115,70 @@ public class SoundManager : MonoBehaviour
         {
             bgm.outputAudioMixerGroup = null;
         }
+    }
+
+    public void LowBassBGMOff()
+    {
+        bgm.outputAudioMixerGroup = null;
+    }
+
+    public void FadeOutBGM()
+    {
+        if(fadeOutBGMcoroutine != null)
+        {
+            StopCoroutine(FadeOutBGMIEnum());
+            fadeOutBGMcoroutine = null;
+        }
+
+        fadeOutBGMcoroutine = StartCoroutine(FadeOutBGMIEnum());
+    }
+
+    IEnumerator FadeInBGMIEnum()
+    {
+        float timePassed = 0.0f;
+        float duration = 3.0f;
+
+        float startValue = bgm.volume;
+
+        while (timePassed <= duration)
+        {
+            float t = timePassed / duration;
+
+            float calculatedValue = Mathf.Lerp(startValue, 0, t);
+            bgm.volume = calculatedValue;
+
+            timePassed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        fadeOutBGMcoroutine = null;
+
+        yield break;
+    }
+
+    IEnumerator FadeOutBGMIEnum()
+    {
+        float timePassed = 0.0f;
+        float duration = 3.0f;
+
+        float startValue = bgm.volume;
+
+        while (timePassed <= duration)
+        {
+            float t = timePassed / duration;
+
+            float calculatedValue = Mathf.Lerp(startValue, 0, t);
+            bgm.volume = calculatedValue;
+
+            timePassed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        fadeOutBGMcoroutine = null;
+
+        yield break;
     }
 
     #endregion

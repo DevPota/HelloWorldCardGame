@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] Image    selectImg;
     [SerializeField] Sprite[] selectSprites;
+    [SerializeField] TextMeshProUGUI selectNameText;
+
+    string[] stageNames = new string[3] {"±èÇØÂù", "±è°­Çö", "±è¹Î¼®"};
 
     bool stageSelected  = false;
     int  stageIndex     = 0;
@@ -95,6 +99,7 @@ public class MenuManager : MonoBehaviour
         }
 
         selectImg.sprite = selectSprites[stageIndex];
+        selectNameText.text = stageNames[stageIndex];
     }
 
     void ToGameScene()

@@ -126,6 +126,8 @@ public class GameManager : MonoBehaviour
     {
         int cardInitialAnimNum = Random.Range(0, 2);
 
+        SoundManager.I.PlaySFX(Define.GAME_CARD_INITAL_SFX);
+
         foreach (GameObject cardObj in listcard)
         {
             cardObj.SetActive(true);

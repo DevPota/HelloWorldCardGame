@@ -35,10 +35,12 @@ public class Card : MonoBehaviour
 
         if(ranFlipNum == 0)
         {
+            SoundManager.I.PlaySFX(Define.GAME_CARD_PLAYED_SFX_0);
             PlayAnim(Define.CARD_ANIM_FLIP_0);
         }
         else
         {
+            SoundManager.I.PlaySFX(Define.GAME_CARD_PLAYED_SFX_1);
             PlayAnim(Define.CARD_ANIM_FLIP_1);
         }
 
