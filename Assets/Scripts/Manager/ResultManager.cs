@@ -28,6 +28,7 @@ public class ResultManager : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.I.PlayBGM(Define.BGM_RESULT);
         Core.I.stage[Core.I.stageIndex] = true;
 
         score.text          = "<color=yellow>SCORE</color>\n" + calculatedScore;

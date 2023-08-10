@@ -1561,6 +1561,14 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
       propertyPath: m_fontSizeBase
       value: 100
       objectReference: {fileID: 0}
@@ -1569,12 +1577,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -4621088413346691119, guid: 66dd0f7df6df0bb41a40c21ba9ed6d99, type: 2}
     - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7363886542015834650, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
       propertyPath: m_Pivot.x
@@ -2323,6 +2343,14 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
       propertyPath: m_fontSizeBase
       value: 100
       objectReference: {fileID: 0}
@@ -2331,12 +2359,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -4621088413346691119, guid: 66dd0f7df6df0bb41a40c21ba9ed6d99, type: 2}
     - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363886542015834629, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7363886542015834650, guid: 63d1ba6b6d570b042a241092e57cb093, type: 3}
       propertyPath: m_Pivot.x
