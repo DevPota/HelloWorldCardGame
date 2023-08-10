@@ -48,7 +48,15 @@ public class GameManager : MonoBehaviour
         if (isGamePlaying == true)
         {
             time += Time.deltaTime;
-            timeTxt.text = time.ToString("N2");
+
+            if(time >= 30)
+            {
+                timeTxt.text = "<color=red>" + time.ToString("N2") + "</color>";
+            }
+            else
+            {
+                timeTxt.text = time.ToString("N2");
+            }
         }
 
         if (isGamePlaying == true && Input.GetKeyDown(KeyCode.Mouse0) == true)

@@ -94,15 +94,6 @@ public class ResultManager : MonoBehaviour
             }
         }
 
-        if(Core.I.stageIndex == 3)
-        {
-            Core.I.stageIndex = 0;
-        }
-        else
-        {
-            Core.I.stageIndex++;
-        }
-
         Invoke("ToCredit", 1.0f);
     }
 
@@ -123,7 +114,7 @@ public class ResultManager : MonoBehaviour
 
     void Next()
     {
-        if (Core.I.stageIndex == 3)
+        if (Core.I.stageIndex == 2)
         {
             Core.I.stageIndex = 0;
         }
