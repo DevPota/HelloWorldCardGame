@@ -526,6 +526,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b487533dcebc64a46be42fa72c952cd9, type: 3}
   - {fileID: 8300000, guid: 1898d930351396944a0429d3e919d2fc, type: 3}
   - {fileID: 8300000, guid: fb2435db865c60c43b8378d83a8db210, type: 3}
+  - {fileID: 8300000, guid: bad645ad430740e4392f0c9873f30d91, type: 3}
   lowPass: {fileID: 24100000, guid: 85fa29848d417de4493e18739b3421f6, type: 2}
 --- !u!1 &1618154148
 GameObject:

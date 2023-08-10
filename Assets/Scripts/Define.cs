@@ -26,6 +26,7 @@ public static class Define
     public const int GAME_CARD_INITAL_SFX   = 8;
     public const int GAME_CARD_PLAYED_SFX_0 = 9;
     public const int GAME_CARD_PLAYED_SFX_1 = 10;
+    public const int GAME_END_SFX = 11;
 
     public const string SCENE_LOGO_STR   = "LogoScene";
     public const string SCENE_MENU_STR   = "MenuScene";

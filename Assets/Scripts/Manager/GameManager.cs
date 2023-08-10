@@ -195,6 +195,7 @@ public class GameManager : MonoBehaviour
             if (correct == listcard.Count / 2)
             {
                 isGamePlaying = false;
+                SoundManager.I.PlaySFX(Define.GAME_END_SFX);
                 GameUIManager.I.ToggleGameOverUI();
 
                 Invoke("FadeInDelay", 1.0f);

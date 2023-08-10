@@ -14,7 +14,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip[] sfxClips = null;
     [SerializeField] AudioMixer lowPass = null;
 
-    Coroutine fadeInBGMcoroutine = null;
     Coroutine fadeOutBGMcoroutine = null;
 
     #region Singleton
@@ -131,30 +130,6 @@ public class SoundManager : MonoBehaviour
         }
 
         fadeOutBGMcoroutine = StartCoroutine(FadeOutBGMIEnum());
-    }
-
-    IEnumerator FadeInBGMIEnum()
-    {
-        float timePassed = 0.0f;
-        float duration = 3.0f;
-
-        float startValue = bgm.volume;
-
-        while (timePassed <= duration)
-        {
-            float t = timePassed / duration;
-
-            float calculatedValue = Mathf.Lerp(startValue, 0, t);
-            bgm.volume = calculatedValue;
-
-            timePassed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        fadeOutBGMcoroutine = null;
-
-        yield break;
     }
 
     IEnumerator FadeOutBGMIEnum()

@@ -32,7 +32,7 @@ public class CreditManager : MonoBehaviour
         }
         else
         {
-            skipText.color = new Color(skipText.color.r, skipText.color.g, skipText.color.b, skipText.color.a - Time.deltaTime);
+            skipText.color = new Color(skipText.color.r, skipText.color.g, skipText.color.b, skipText.color.a - Time.deltaTime / 2);
             timePassed = 0.0f;
         }
 
@@ -49,10 +49,5 @@ public class CreditManager : MonoBehaviour
     {
         SoundManager.I.LowBassBGMOff();
         Core.I.LoadScene(Define.SCENE_MENU_STR);
-    }
-
-    public void LowBase()
-    {
-        SoundManager.I.LowPassBGM();
     }
 }
