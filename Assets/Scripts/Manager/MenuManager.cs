@@ -78,8 +78,12 @@ public class MenuManager : MonoBehaviour
     public void OnClickSelectArrow(bool _isLeft)
     {
         SoundManager.I.PlaySFX(Define.UI_BUTTON_CLICK_SFX);
-        stageSelected = false;
-        doubleAnim.SetTrigger("Reset");
+
+        if(stageSelected == true)
+        {
+            doubleAnim.SetTrigger("Reset");
+            stageSelected = false;
+        }
 
         if (_isLeft == true)
         {
